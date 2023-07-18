@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Basket.Api.Entities
 {
@@ -20,11 +21,13 @@ namespace Basket.Api.Entities
         public decimal TotalPrice { 
             get { 
                 decimal totalPrice = 0;
-                foreach (ShoppingCartItem item in Itmes)
+                if (Itmes != null && Itmes.Any())
                 {
-                    totalPrice += item.Price * item.Quntity;
+                    foreach (ShoppingCartItem item in Itmes)
+                    {
+                        totalPrice += item.Price * item.Quntity;
+                    }
                 }
-
                 return totalPrice;
             } 
         }
